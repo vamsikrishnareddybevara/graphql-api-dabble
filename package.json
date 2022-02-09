@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "nodemon server.js --ext js,graphql"
   },
   "repository": {
     "type": "git",
@@ -17,5 +18,16 @@
   "bugs": {
     "url": "https://github.com/vamsikrishnareddybevara/graphql-api-dabble/issues"
   },
-  "homepage": "https://github.com/vamsikrishnareddybevara/graphql-api-dabble#readme"
+  "homepage": "https://github.com/vamsikrishnareddybevara/graphql-api-dabble#readme",
+  "dependencies": {
+    "apollo-server-express": "^3.6.3",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.2",
+    "graphql": "^16.3.0",
+    "mongoose": "^6.2.1",
+    "validator": "^13.7.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
 }
