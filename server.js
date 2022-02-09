@@ -6,8 +6,10 @@ const mongoose = require("mongoose");
 
 const typeDefs = require("./schema.js");
 const resolvers = require("./resolvers");
-const port = process.env.PORT || 3000;
+
 dotenv.config({ path: "./.env" });
+
+const port = process.env.PORT || 3000;
 
 const connectDatabase = () => {
   const DB = process.env.DATABASE.replace(
@@ -15,14 +17,11 @@ const connectDatabase = () => {
     process.env.DATABASE_PASSWORD
   );
   mongoose
-    .connect(DB, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    })
+    .connect(DB)
     .then(() => {
       console.log("DB connection successful");
     })
-    .catch((err) => console.log("err", err));
+    .catch((err) => console.log("mongodb db connection error", err));
 };
 const startServer = async () => {
   const apolloServer = new ApolloServer({
