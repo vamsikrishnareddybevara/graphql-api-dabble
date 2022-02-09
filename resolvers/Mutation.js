@@ -6,7 +6,7 @@ const mutationResolvers = {
     const { areaInSqKm = undefined, totalPopulation = undefined } =
       args.countryDetails;
 
-    const details = await countryDetail.findByIdAndUpdate(
+    const countryDetails = await countryDetail.findByIdAndUpdate(
       id,
       {
         areaInSqKm,
@@ -14,15 +14,18 @@ const mutationResolvers = {
       },
       { new: true, runValidators: true }
     );
-
-    return details;
+    if (!countryDetails) {
+      return new Error(`Country details doesn't exist with the ID provided`);
+    }
+    return countryDetails;
   },
   deleteCountryDetails: async (parent, args, context, info) => {
     const { id } = args;
-
-    const details = await countryDetail.findByIdAndDelete(id);
-    console.log({ details });
-    return details;
+    const countryDetails = await countryDetail.findByIdAndDelete(id);
+    if (!countryDetails) {
+      return new Error(`Country details doesn't exist with the ID provided`);
+    }
+    return countryDetails;
   },
   createCountryDetails: async (parent, args, context, info) => {
     console.log({ args });
@@ -31,18 +34,17 @@ const mutationResolvers = {
       country,
       year,
     });
-
-    if (countryDetailExists) {
+    if (countryDetailExists && countryDetailExists.length > 0) {
       return new Error("Country details already exist");
     }
-    const details = await countryDetail.create({
+    const newCountryDetails = await countryDetail.create({
       country,
       year,
       areaInSqKm,
       totalPopulation,
     });
 
-    return details;
+    return newCountryDetails;
   },
 };
 
