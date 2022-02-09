@@ -4,7 +4,6 @@ const dotenv = require("dotenv");
 const app = express();
 const mongoose = require("mongoose");
 
-const globalErrorHandler = require("./errorHandling/handleError");
 const typeDefs = require("./schema.js");
 const resolvers = require("./resolvers");
 const port = process.env.PORT || 3000;
@@ -41,6 +40,3 @@ const startServer = async () => {
 connectDatabase();
 // Start apollo server
 startServer();
-
-// Global error handling
-app.use(globalErrorHandler);
