@@ -4,8 +4,8 @@ const typeDefs = gql`
   type Country {
     country: String!
     year: String!
-    areaInSqKm: Int!
-    totalPopulation: Int!
+    areaInSqKm: Int
+    totalPopulation: Int
   }
   input CountryUpdateInput {
     areaInSqKm: Int
@@ -20,15 +20,15 @@ const typeDefs = gql`
   }
   type Query {
     getAllCountryDetails: [Country]
-    getCountryDetailsById(id: ID!): Country
+    getCountryDetailsById(id: ID!): Country!
     getCountryDetailsByYear(year: String!): [Country]
     getCountryDetailsByName(country: String!): [Country]
   }
 
   type Mutation {
-    updateCountryDetails(id: ID!, countryDetails: CountryUpdateInput!): Country
-    deleteCountryDetails(id: ID!): Country
-    createCountryDetails(countryDetails: CountryCreateInput): Country
+    updateCountryDetails(id: ID!, countryDetails: CountryUpdateInput!): Country!
+    deleteCountryDetails(id: ID!): Country!
+    createCountryDetails(countryDetails: CountryCreateInput): Country!
   }
 `;
 module.exports = typeDefs;
