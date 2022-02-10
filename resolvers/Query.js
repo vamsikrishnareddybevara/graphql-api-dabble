@@ -10,8 +10,8 @@ const queryResolvers = {
   },
 
   getAllCountryDetails: async () => {
-    const alllCountryDetails = await countryDetail.find();
-    return alllCountryDetails;
+    const allCountryDetails = await countryDetail.find();
+    return allCountryDetails;
   },
 
   getCountryDetailsByName: async (parent, args, context, info) => {

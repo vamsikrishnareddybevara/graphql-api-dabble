@@ -28,8 +28,12 @@ const mutationResolvers = {
     return countryDetails;
   },
   createCountryDetails: async (parent, args, context, info) => {
-    console.log({ args });
-    const { country, year, areaInSqKm, totalPopulation } = args.countryDetails;
+    const {
+      country,
+      year,
+      areaInSqKm = undefined,
+      totalPopulation = undefined,
+    } = args.countryDetails;
     const countryDetailExists = await countryDetail.find({
       country,
       year,
